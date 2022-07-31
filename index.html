@@ -10,31 +10,35 @@
     <title>Calculator using JavaScript</title>
 
     <style>
+        html,
         body {
-            width: 500px;
-            margin: 4% auto;
+            min-height: 100%;
+            max-width: 440px;
+            margin: auto auto;
             font-family: 'Source Sans Pro', sans-serif;
             letter-spacing: 5px;
-            font-size: 1.8rem;
-
+            font-size: 1.5rem;
+            background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(53, 105, 183, 1) 0%, rgba(70, 70, 159, 1) 0%, rgba(222, 222, 222, 1) 0%, rgba(255, 255, 255, 1) 100%);
         }
 
         .calculator {
-            padding: 20px;
-            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-            box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-            border-radius: 1px;
+            padding: 1rem;
+            max-width: 100%;
+            box-shadow: -4px 4px 15px 9px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            background-color: white;
         }
 
         .input {
             border: 1px solid #ddd;
-            border-radius: 1px;
+            border-radius: 2rem;
             height: 60px;
+            width: 100%;
             padding-right: 15px;
             padding-top: 10px;
             text-align: right;
             margin-right: 6px;
-            font-size: 2.5rem;
+            font-size: 1.2rem;
             overflow-x: auto;
             transition: all .2s ease-in-out;
         }
@@ -45,12 +49,8 @@
             box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
         }
 
-
-
         .operators div {
-            display: inline-block;
             border: 1px solid #bbb;
-            border-radius: 1px;
             width: 80px;
             text-align: center;
             padding: 10px;
@@ -58,13 +58,26 @@
             cursor: pointer;
             background-color: #ddd;
             transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            white-space: nowrap;
+            background: #E1D5E9;
+            border-radius: 1.9rem;
+            border: 0px solid #444;
+            padding: 10px 13px 10px 13px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+            color: #000;
+            font-size: 1rem;
+            font-family: Helvetica Neue;
+            font-weight: 900;
+            font-style: normal;
+            
         }
 
         .operators div:hover {
-            background-color: #ddd;
-            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-            border-color: #aaa;
+            background: #d6a4f7;
         }
 
         .operators div:active {
@@ -76,23 +89,35 @@
         }
 
         .numbers div {
-            display: inline-block;
-            border: 1px solid #ddd;
-            border-radius: 1px;
+            border: 1px solid #bbb;
             width: 80px;
             text-align: center;
             padding: 10px;
             margin: 10px 4px 10px 0;
             cursor: pointer;
-            background-color: #f9f9f9;
+            background-color: #ddd;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+            position: relative;
+            cursor: pointer;
+            white-space: nowrap;
+            background: #fff;
+            border-radius: 1.9rem;
+            border: 0px solid #444;
+            padding: 10px 13px 10px 13px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+            color: #000;
+            font-size: 1rem;
+            font-family: Helvetica Neue;
+            font-weight: 900;
+            font-style: normal; 
+            display: inline-block;
+            cursor: pointer;
             transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
         }
 
         .numbers div:hover {
-            background-color: #f1f1f1;
-            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-            border-color: #bbb;
+     
         }
 
         .numbers div:active {
@@ -100,37 +125,47 @@
         }
 
         div.equal {
-            display: inline-block;
-            border: 1px solid #3079ED;
-            border-radius: 1px;
-            width: 17%;
+            border: 1px solid #bbb;
+            width: 80px;
             text-align: center;
-            padding: 111px 10px;
+            cursor: pointer;
+            background-color: #ddd;
+            transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            white-space: nowrap;
+            background: #ad51f3;
+            border-radius: 0.4rem;
+            border: 0px solid #444;
+            padding: 10px 13px 10px 13px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 1rem;
+            font-family: Helvetica Neue;
+            font-weight: 900;
+            font-style: normal; 
+            text-align: center;
+            padding: 120px 10px;
             margin: 10px 6px 10px 0;
             vertical-align: top;
-            cursor: pointer;
-            color: #FFF;
-            background-color: #4d90fe;
-            transition: all .2s ease-in-out;
+            
         }
 
         div.equal:hover {
-            background-color: #307CF9;
-            -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-            border-color: #1857BB;
         }
 
         div.equal:active {
             font-weight: bold;
         }
 
-        .title{
+        .title {
             text-align: center;
         }
+        
     </style>
 </head>
-
 
 <body>
     <div class="title">
